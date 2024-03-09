@@ -1,0 +1,2 @@
+alter table [etc_user] add constraint UK_etc_user_Username UNIQUE([Username]);
+alter table [common_User] add constraint UK_common_User_Username UNIQUE([Username]); 
