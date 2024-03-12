@@ -3,12 +3,11 @@
 -- alter Table [crashcart_cart] alter column [CurrentSecurityCode]     VARCHAR(20)      ;
 -- alter Table [crashcart_cart] alter column [LastSecurityCode]        VARCHAR(20)      ;
 
-insert into [eServices_Role] ([Name],[Area],[Controller],[Action]) SELECT '/HR/EmployeeRequiredTraining/Index','HR','EmployeeRequiredTraining','Index';
-insert into [eServices_Role] ([Name],[Area],[Controller],[Action]) SELECT '/HR/EmployeeRequiredTraining/From' ,'HR','EmployeeRequiredTraining','From' ;
-insert into [eServices_Role] ([Name],[Area],[Controller],[Action]) SELECT '/HR/EmployeeRequiredTraining/Save' ,'HR','EmployeeRequiredTraining','Save' ;
-
-insert into [eServices_AuthorizationRole] ([RoleId],[AuthorizationId]) SELECT (SELECT MAX([Id]) FROM [eServices_Role] WHERE [Name]='/HR/EmployeeRequiredTraining/Index'),(SELECT MAX([Id]) FROM [eServices_Authorization] WHERE [Code]='HR');
-insert into [eServices_AuthorizationRole] ([RoleId],[AuthorizationId]) SELECT (SELECT MAX([Id]) FROM [eServices_Role] WHERE [Name]='/HR/EmployeeRequiredTraining/From'),(SELECT MAX([Id]) FROM [eServices_Authorization] WHERE [Code]='HR');
-insert into [eServices_AuthorizationRole] ([RoleId],[AuthorizationId]) SELECT (SELECT MAX([Id]) FROM [eServices_Role] WHERE [Name]='/HR/EmployeeRequiredTraining/Save'),(SELECT MAX([Id]) FROM [eServices_Authorization] WHERE [Code]='HR');
+-- insert into [eServices_Role] ([Name],[Area],[Controller],[Action]) SELECT '/HR/EmployeeRequiredTraining/Index','HR','EmployeeRequiredTraining','Index';
+-- insert into [eServices_Role] ([Name],[Area],[Controller],[Action]) SELECT '/HR/EmployeeRequiredTraining/Form' ,'HR','EmployeeRequiredTraining','Form' ;
+-- insert into [eServices_Role] ([Name],[Area],[Controller],[Action]) SELECT '/HR/EmployeeRequiredTraining/Save' ,'HR','EmployeeRequiredTraining','Save' ;
+-- insert into [eServices_AuthorizationRole] ([RoleId],[AuthorizationId]) SELECT (SELECT MAX([eServices_Role].[Id]) FROM [eServices_Role] WHERE [Name]='/HR/EmployeeRequiredTraining/Index'),(SELECT MAX([Id]) FROM [eServices_Authorization] WHERE [Code]='HR');
+-- insert into [eServices_AuthorizationRole] ([RoleId],[AuthorizationId]) SELECT (SELECT MAX([eServices_Role].[Id]) FROM [eServices_Role] WHERE [Name]='/HR/EmployeeRequiredTraining/Form'),(SELECT MAX([Id]) FROM [eServices_Authorization] WHERE [Code]='HR');
+-- insert into [eServices_AuthorizationRole] ([RoleId],[AuthorizationId]) SELECT (SELECT MAX([eServices_Role].[Id]) FROM [eServices_Role] WHERE [Name]='/HR/EmployeeRequiredTraining/Save'),(SELECT MAX([Id]) FROM [eServices_Authorization] WHERE [Code]='HR');
 
 
