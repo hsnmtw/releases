@@ -1493,7 +1493,7 @@ function ALERT(selector,r,onSuccess,onFailure){
         alertbox.setAttribute('data-alertbox-message-'+rndm, 1 );
         //alertbox.innerHTML = ICONS[r.Status] + ' ' + (r.Message+'').replace('|','<br>') + (typeof r.Data === 'string' ? ' / ' + r.Data : '') + ' <button onclick="setTimeout(function(){ QSA(\''+ selector +'\').forEach(function(x){ x.className = \'fade hide\'; })  },50)" type="button" class="close p-0 ml-3" >&times;</button>';
         
-        alertbox.innerHTML = '<i class="close icon" onclick="hideSlowly(\'[data-alertbox-message-'+ rndm +']\')"></i>'+
+        alertbox.innerHTML = '<i class="close icon" onclick="hideSlowly(\'[data-alertbox-message-'+ rndm +']\')" style="margin-top:-0.25em !important"></i>'+
 							 '<span '+ (r.IsArabic ? ' class="rtl" dir="rtl"' : '') +'>'+
                              ICONS[r.Status] + 
                              ' ' + (r.Message+'').replace('|','<br>');
