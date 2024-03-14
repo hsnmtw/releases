@@ -11,3 +11,5 @@
 -- insert into [eServices_AuthorizationRole] ([RoleId],[AuthorizationId]) SELECT (SELECT MAX([eServices_Role].[Id]) FROM [eServices_Role] WHERE [Name]='/HR/EmployeeRequiredTraining/Save'),(SELECT MAX([Id]) FROM [eServices_Authorization] WHERE [Code]='HR');
 
 
+update [eServices_Role] set [Controller] = 'HRHome' where [Controller] = 'Home' and [Area]='HR';
+update [eServices_Role] set [Area] = 'ePolicy' where [Area] = 'HR';
