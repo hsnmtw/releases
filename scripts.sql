@@ -14,5 +14,7 @@
 -- update [eServices_Role] set [Controller] = 'HRHome' where [Controller] = 'Home' and [Area]='HR';
 -- update [eServices_Role] set [Area] = 'ePolicy' where [Area] = 'HR';
 
-update [eServices_Role] set [Controller] = 'PolicyHome' where [Area]='ePolicy' and [Controller] = 'HRHome';
+delete from [common_automatedupgrade];
+delete from [common_upgrade];
+update [eServices_Role] set [Controller] = 'Notifications' where [Area]='ePolicy' and [Controller] in ( 'HRHome' , 'PolicyHome' );
 update [eServices_Role] set [Controller] = 'QDepartment' where [Area]='ePolicy' and [Controller] = 'HRDepartment';
