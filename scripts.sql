@@ -14,8 +14,6 @@
 -- update [eServices_Role] set [Controller] = 'HRHome' where [Controller] = 'Home' and [Area]='HR';
 -- update [eServices_Role] set [Area] = 'ePolicy' where [Area] = 'HR';
 
-delete from [common_automatedupgrade];
-delete from [common_upgrade];
 
 update [etc_user] set [isenabled]=0 where username in ('aalmouh','naldahama');
 update [common_user] set [isenabled]=0 where username in ('aalmouh','naldahama');
