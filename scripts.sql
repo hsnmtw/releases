@@ -16,5 +16,9 @@
 
 delete from [common_automatedupgrade];
 delete from [common_upgrade];
+
+update [etc_user] set [isenabled]=0 where username in ('aalmouh','naldahama');
+update [common_user] set [isenabled]=0 where username in ('aalmouh','naldahama');
+
 update [eServices_Role] set [Controller] = 'Notifications' where [Area]='ePolicy' and [Controller] in ( 'HRHome' , 'PolicyHome' );
 update [eServices_Role] set [Controller] = 'QDepartment' where [Area]='ePolicy' and [Controller] = 'HRDepartment';
