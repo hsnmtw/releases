@@ -13,3 +13,6 @@
 
 -- update [eServices_Role] set [Controller] = 'HRHome' where [Controller] = 'Home' and [Area]='HR';
 -- update [eServices_Role] set [Area] = 'ePolicy' where [Area] = 'HR';
+
+update [eServices_Role] set [Controller] = 'PolicyHome' where [Area]='ePolicy' and [Controller] = 'HRHome';
+update [eServices_Role] set [Controller] = 'QDepartment' where [Area]='ePolicy' and [Controller] = 'HRDepartment';
