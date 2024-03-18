@@ -1488,7 +1488,7 @@ var JS_Security_User = {
     },
 
     "secureLogin": function(self,selector){
-        setValue('[data-pw-input]',makeid(12));
+        //setValue('[data-pw-input]',makeid(12));
         var ru=getValue(selector + ' input[data-ru]');
         var un=getValue(selector + ' input[data-un]');
         var pw=getValue(selector + ' input[data-pw]');
