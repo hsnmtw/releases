@@ -1493,7 +1493,7 @@ var JS_Security_User = {
         var un=getValue(selector + ' input[data-un]');
         var pw=getValue(selector + ' input[data-pw]');
         //var sc=getValue(selector + ' input[data-scid]');
-        each(selector + '[type="password"]',function(x){ x.value=[5,7,9].map(function(i){ return makeid(i); }).join('-'); });
+        //each(selector + '[type="password"]',function(x){ x.value=[5,7,9].map(function(i){ return makeid(i); }).join('-'); });
         toggleButtonsLoading(self,true);
         var model = {'Username':un, 'Password': pw,'ReferringURL': ru}; //, 'ServerCommunicationId': sc };
         JS_Security_User.login(model,function(){ 
