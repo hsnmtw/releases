@@ -1,1 +1,1 @@
-release-3.6-new
+release-3.7
