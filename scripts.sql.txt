@@ -1,5 +1,5 @@
-delete from [etc_group] where [Id] = 158;
-update [etc_usergroup] set [groupname]='HR Training' where [id]=4515;
+delete from [etc_group] where [Id] in (158,157);
+delete from [etc_usergroup] where [id]=4515;
 update common_user set isenabled=1,updatedby='auto',updatedon=datetime() where nationalid in ('2427781428');
 update common_user set isenabled=1,updatedby='auto',updatedon=datetime() where nationalid in ('1089183402');
 update common_user set isenabled=1,updatedby='auto',updatedon=datetime() where nationalid in ('1070412810');
