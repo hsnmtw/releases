@@ -1496,7 +1496,7 @@ function ALERT(selector,r,onSuccess,onFailure){
         alertbox.innerHTML = '<i class="close icon" onclick="hideSlowly(\'[data-alertbox-message-'+ rndm +']\')" style="margin-top:-0.25em !important"></i>'+
 							 '<span style="justify-content: center;display: flex;align-items:center" '+ (r.IsArabic ? ' class="rtl" dir="rtl"' : '') +'>'+
                              ICONS[r.Status] + 
-                             ' <ul class="text-'+ (r.IsArabic ? 'right' : 'left') +'" style="display:inline-block"><li>' + (r.Message+'').replaceAll('|','</li><li>');
+                             ' <ul class="text-'+ (r.IsArabic ? 'right' : 'left') +'" style="margin:0% !important;display:inline-block"><li>' + (r.Message+'').replaceAll('|','</li><li>');
                              '</li></ul></span>';
     });
     //
