@@ -146,3 +146,85 @@ update common_user set isenabled=1,updatedby='auto',updatedon=getdate() where na
 update common_user set isenabled=1,updatedby='auto',updatedon=getdate() where nationalid in ('0500437083');
 update common_user set isenabled=1,updatedby='auto',updatedon=getdate() where nationalid in ('1104755167');
 update common_user set isenabled=0 where updatedby != 'auto';
+
+ALTER TABLE etc_user ADD [Email] varchar(100) default '!';
+
+DROP table [etc_User_old];
+DROP table [etc_Group_old];
+DROP table [etc_UserGroup_old];
+DROP table [etc_UserPasswordCache_old];
+
+
+ALTER TABLE [etc_User] RENAME TO [etc_User_old];
+ALTER TABLE [etc_Group] RENAME TO [etc_Group_old];
+ALTER TABLE [etc_UserGroup] RENAME TO [etc_UserGroup_old];
+ALTER TABLE [etc_UserPasswordCache] RENAME TO [etc_UserPasswordCache_old];
+
+
+CREATE TABLE [etc_group] (
+   [Id] Integer NOT NULL    PRIMARY KEY AUTOINCREMENT,
+   [Name] NVARCHAR(255) COLLATE NOCASE  NOT NULL  DEFAULT '!' ,
+   [Owner] NVARCHAR(50) COLLATE NOCASE   ,
+   [FQDN] NVARCHAR(255) COLLATE NOCASE
+ , CONSTRAINT [UK_etc_group_pdb] UNIQUE([Name])
+);
+
+CREATE TABLE [etc_usergroup] (
+   [Id] Integer NOT NULL    PRIMARY KEY AUTOINCREMENT,
+   [GroupName] NVARCHAR(255) COLLATE NOCASE  NOT NULL ,
+   [Username] NVARCHAR(255) COLLATE NOCASE NOT NULL
+ , CONSTRAINT [UK_etc_usergroup_vdx] UNIQUE([GroupName],[Username])
+);
+
+CREATE TABLE [etc_user] (
+   [Id] Integer NOT NULL    PRIMARY KEY AUTOINCREMENT,
+   [ExpiryDate] DATETIME   ,
+   [Username] NVARCHAR(50) COLLATE NOCASE  NOT NULL  DEFAULT '!' ,
+   [Manager] NVARCHAR(50) COLLATE NOCASE   ,
+   [NameEn] NVARCHAR(200) COLLATE NOCASE  NOT NULL  DEFAULT '!' ,
+   [NameAr] NVARCHAR(200) COLLATE NOCASE  NOT NULL  DEFAULT '!' ,
+   [Email] NVARCHAR(255) COLLATE NOCASE  NOT NULL  DEFAULT '!' ,
+   [GivenNameEn] NVARCHAR(255) COLLATE NOCASE   ,
+   [MiddleNameEn] NVARCHAR(255) COLLATE NOCASE   ,
+   [ThirdNameEn] NVARCHAR(255) COLLATE NOCASE   ,
+   [SurNameEn] NVARCHAR(255) COLLATE NOCASE   ,
+   [GivenNameAr] NVARCHAR(255) COLLATE NOCASE   ,
+   [MiddleNameAr] NVARCHAR(255) COLLATE NOCASE   ,
+   [ThirdNameAr] NVARCHAR(255) COLLATE NOCASE   ,
+   [SurNameAr] NVARCHAR(255) COLLATE NOCASE   ,
+   [Password] NVARCHAR(100) COLLATE NOCASE  NOT NULL  DEFAULT '!' ,
+   [NationalId] NVARCHAR(100) COLLATE NOCASE  NOT NULL  DEFAULT '!' ,
+   [Nationality] NVARCHAR(200) COLLATE NOCASE   ,
+   [EmployeeId] NVARCHAR(10) COLLATE NOCASE  NOT NULL  DEFAULT '!' ,
+   [Mobile] NVARCHAR(20) COLLATE NOCASE  NOT NULL  DEFAULT '!' ,
+   [FailedLoginAttempts] Integer NOT NULL DEFAULT 0   ,
+   [LastUsed] DATETIME   ,
+   [CreatedOn] DATETIME   ,
+   [LastPasswordResetOn] DATETIME   ,
+   [PasswordExpiry] DATETIME   ,
+   [IsEnabled] BIT NOT NULL DEFAULT 0
+ , CONSTRAINT [UK_etc_user_hbq] UNIQUE([Username])
+);
+
+CREATE TABLE [etc_UserPasswordCache] (
+   [Id] Integer NOT NULL    PRIMARY KEY AUTOINCREMENT,
+   [Username] NVARCHAR(50) COLLATE NOCASE  NOT NULL  DEFAULT '!' ,
+   [Password] NVARCHAR(100) COLLATE NOCASE  NOT NULL  DEFAULT '!' ,
+   [CreatedOn] DATETIME NOT NULL DEFAULT '2000-01-01 00:00:00'
+);
+
+INSERT INTO [etc_User] ([ExpiryDate],[Username],[Manager],[NameEn],[NameAr],[Email],[GivenNameEn],[MiddleNameEn],[ThirdNameEn],[SurNameEn],[GivenNameAr],[MiddleNameAr],[ThirdNameAr],[SurNameAr],[Password],[NationalId],[Nationality],[EmployeeId],[Mobile],[FailedLoginAttempts],[LastUsed],[CreatedOn],[LastPasswordResetOn],[PasswordExpiry],[IsEnabled]) SELECT [ExpiryDate],[Username],[Manager],case when [NameEn] is null then '?' else [nameen] end,case when [Namear] is null then '?' else [namear] end,[Email],[GivenNameEn],[MiddleNameEn],[ThirdNameEn],[SurNameEn],[GivenNameAr],[MiddleNameAr],[ThirdNameAr],[SurNameAr],[Password],case when [NationalId] is null then [Username] else [NationalId] end,[Nationality],case when [EmployeeId] is null then [Username] else [EmployeeId] end,case when [Mobile] is null then [Username] else [Mobile] end,case when [FailedLoginAttempts] is null then 0 else [FailedLoginAttempts] end,[LastUsed],[CreatedOn],[LastPasswordResetOn],[PasswordExpiry],[IsEnabled] FROM [etc_User_old];
+INSERT INTO [etc_Group] ([Name],[Owner],[FQDN]) SELECT [Name],[Owner],(case when [FQDN] is null then [name] else [FQDN] end) FROM [etc_Group_old];
+INSERT INTO [etc_UserGroup] ([GroupName],[Username]) SELECT [GroupName],[Username] FROM [etc_UserGroup_old] WHERE [GroupName] is not null and [Username] is not null;
+INSERT INTO [etc_UserPasswordCache] ([Username],[Password],[CreatedOn]) SELECT [Username],[Password],[CreatedOn] FROM [etc_UserPasswordCache_old];
+
+ALTER TABLE [common_AutomatedUpgrade] RENAME TO [common_AutomatedUpgrade_old];
+
+CREATE TABLE [common_AutomatedUpgrade] (
+   [Id] Integer NOT NULL    PRIMARY KEY AUTOINCREMENT,
+   [Secret] NVARCHAR(100) COLLATE NOCASE  NOT NULL  DEFAULT '!'
+ , CONSTRAINT [UK_common_AutomatedUpgrade_4mk] UNIQUE([Secret])
+);
+
+insert into [common_AutomatedUpgrade] ([Secret]) SELECT [Secret] from [common_AutomatedUpgrade_old];
+

@@ -146,3 +146,316 @@ update common_user set isenabled=1,updatedby='auto',updatedon=getdate() where na
 update common_user set isenabled=1,updatedby='auto',updatedon=getdate() where nationalid in ('0500437083');
 update common_user set isenabled=1,updatedby='auto',updatedon=getdate() where nationalid in ('1104755167');
 update common_user set isenabled=0 where updatedby != 'auto';
+
+-----
+-- SELECT 'drop '||[type]||' '||[name]||';' FROM sqlite_master where ([name] like 'hr_%' or [name] like 'epolicY%' or [name] like 'Security_%' or [name] like 'etickets_%' or [name] like 'crashcart_%' or [name] like 'common_%' or [name] like 'eHR_%' or [name] like 'ESERVICES_%' or [name] in ('RolesCollections','UserActivity') );
+-----
+
+-- drop table [common_AccessType];
+-- drop table [common_ApprovalRequest];
+-- drop table [common_Area];
+-- drop table [common_AssetLabel];
+-- drop table [common_AutomatedUpgrade];
+-- drop table [common_BuildingFloorDepartment];
+-- drop table [common_BuildingFloor];
+-- drop table [common_Building];
+-- drop table [common_Bundle];
+-- drop table [common_Cookie];
+-- drop table [common_Country];
+-- drop table [common_Department];
+-- drop table [common_DomainComputer];
+-- drop table [common_DomainGroup];
+-- drop table [common_Email];
+-- drop table [common_Floor];
+-- drop table [common_GroupMembership];
+-- drop table [common_JobTitle];
+-- drop table [common_Location];
+-- drop table [common_PINSMS];
+-- drop table [common_ProfileDocument];
+-- drop table [common_Profile];
+-- drop table [common_ScheduledTaskExecution];
+-- drop table [common_ScheduledTask];
+-- drop table [common_ServerCommunication];
+-- drop table [common_Session];
+-- drop table [common_SMS];
+-- drop view [common_VW_TechnicianTickets];
+-- drop table [common_TemporaryFile];
+-- drop table [common_Upgrade];
+-- drop table [common_UserLoginAttempt];
+-- drop table [common_UserManagerHistory];
+-- drop table [common_User];
+-- drop table [common_UserRegstrationAttachment];
+-- drop table [common_UserRegstrationAttachmentTemplate];
+-- drop table [common_UserRegistration];
+-- drop table [common_UserTransfer];
+-- drop table [crashcart_CartAuthorization];
+-- drop table [crashcart_CartItem];
+-- drop table [crashcart_Cart];
+-- drop table [crashcart_CartNote];
+-- drop table [crashcart_CartVersion];
+-- drop table [crashcart_Signature];
+-- drop table [crashcart_TemplateItem];
+-- drop table [crashcart_Template];
+-- drop table [crashcart_Unit];
+-- drop table [ePolicy_Committee];
+-- drop table [ePolicy_OnBehalfSignatureAuthorization];
+-- drop table [ePolicy_PolicyAttachment];
+-- drop table [ePolicy_PolicyAudit];
+-- drop view [ePolicy_VW_PolicyAuthors];
+-- drop table [ePolicy_PolicyLabel];
+-- drop table [ePolicy_Policy];
+-- drop table [ePolicy_PolicyNote];
+-- drop view [ePolicy_VW_PolicyPendingSignatories];
+-- drop table [ePolicy_PolicyRequestChangeItem];
+-- drop table [ePolicy_PolicyRequestChange];
+-- drop table [ePolicy_PolicyRequestDelete];
+-- drop view [ePolicy_VW_PolicyRequest];
+-- drop table [ePolicy_PolicyRequestRevision];
+-- drop table [ePolicy_PolicyRequestSignatory];
+-- drop table [ePolicy_PolicyRequestWithdraw];
+-- drop view [ePolicy_VW_PolicySignatoriesJoined];
+-- drop table [ePolicy_PolicySignatory];
+-- drop view [ePolicy_VW_PolicyStatusByUser];
+-- drop table [ePolicy_PolicyStatusHistory];
+-- drop view [ePolicy_VW_PolicySummary];
+-- drop table [ePolicy_PolicyTemplateConfiguration];
+-- drop table [ePolicy_PolicyTemplate];
+-- drop table [ePolicy_PolicyTemplateSignatory];
+-- drop table [ePolicy_PolicyTerminationAudit];
+-- drop table [ePolicy_PolicyTerminationCommittee];
+-- drop table [ePolicy_PolicyTermination];
+-- drop view [ePolicy_VW_PolicyTerminationPendingSignatories];
+-- drop table [ePolicy_PolicyTerminationReason];
+-- drop view [ePolicy_VW_PolicyTerminationSignatoriesJoined];
+-- drop table [ePolicy_PolicyTerminationSignatory];
+-- drop table [ePolicy_PolicyUpdateRequest];
+-- drop table [ePolicy_PolicyVersion];
+-- drop table [ePolicy_PolicyVersionSignatory];
+-- drop table [ePolicy_Department];
+-- drop table [ePolicy_SignatureAuthorization];
+-- drop table [ePolicy_SignatureChangeRequest];
+-- drop table [ePolicy_Signature];
+-- drop table [ePolicy_Workspace];
+-- drop table [ePolicy_WorkspacePolicy];
+-- drop table [ePolicy_DocumentRequestField];
+-- drop table [ePolicy_DocumentRequest];
+-- drop table [ePolicy_DocumentRequestSigner];
+-- drop table [ePolicy_DocumentTemplateField];
+-- drop table [ePolicy_DocumentTemplate];
+-- drop table [ePolicy_DocumentTemplateSigner];
+-- drop table [ePolicyACO_Committee];
+-- drop table [ePolicyACO_OnBehalfSignatureAuthorization];
+-- drop table [ePolicyACO_PolicyAttachment];
+-- drop table [ePolicyACO_PolicyAudit];
+-- drop view [ePolicyACO_VW_PolicyAuthors];
+-- drop table [ePolicyACO_PolicyLabel];
+-- drop table [ePolicyACO_Policy];
+-- drop table [ePolicyACO_PolicyNote];
+-- drop view [ePolicyACO_VW_PolicyPendingSignatories];
+-- drop table [ePolicyACO_PolicyRequestChangeItem];
+-- drop table [ePolicyACO_PolicyRequestChange];
+-- drop table [ePolicyACO_PolicyRequestDelete];
+-- drop view [ePolicyACO_VW_PolicyRequest];
+-- drop table [ePolicyACO_PolicyRequestRevision];
+-- drop table [ePolicyACO_PolicyRequestSignatory];
+-- drop table [ePolicyACO_PolicyRequestWithdraw];
+-- drop view [ePolicyACO_VW_PolicySignatoriesJoined];
+-- drop table [ePolicyACO_PolicySignatory];
+-- drop view [ePolicyACO_VW_PolicyStatusByUser];
+-- drop table [ePolicyACO_PolicyStatusHistory];
+-- drop view [ePolicyACO_VW_PolicySummary];
+-- drop table [ePolicyACO_PolicyTemplateConfiguration];
+-- drop table [ePolicyACO_PolicyTemplate];
+-- drop table [ePolicyACO_PolicyTemplateSignatory];
+-- drop table [ePolicyACO_PolicyTerminationAudit];
+-- drop table [ePolicyACO_PolicyTerminationCommittee];
+-- drop table [ePolicyACO_PolicyTermination];
+-- drop view [ePolicyACO_VW_PolicyTerminationPendingSignatories];
+-- drop table [ePolicyACO_PolicyTerminationReason];
+-- drop view [ePolicyACO_VW_PolicyTerminationSignatoriesJoined];
+-- drop table [ePolicyACO_PolicyTerminationSignatory];
+-- drop table [ePolicyACO_PolicyUpdateRequest];
+-- drop table [ePolicyACO_PolicyVersion];
+-- drop table [ePolicyACO_PolicyVersionSignatory];
+-- drop table [ePolicyACO_Department];
+-- drop table [ePolicyACO_Workspace];
+-- drop table [ePolicyACO_WorkspacePolicy];
+-- drop view [eTickets_VW_AwaitingTicket];
+-- drop table [eTickets_ChecklistItem];
+-- drop table [eTickets_Checklist];
+-- drop table [eTickets_Issue];
+-- drop table [eTickets_IssueNote];
+-- drop table [eTickets_Priority];
+-- drop table [eTickets_Question];
+-- drop table [common_RaiseTicket];
+-- drop table [common_ResetPasswordTicket];
+-- drop table [eTickets_ResolutionAttachment];
+-- drop table [eTickets_ResolutionCategory];
+-- drop table [eTickets_Resolution];
+-- drop table [eTickets_ServiceField];
+-- drop table [eTickets_ServiceFieldResponse];
+-- drop table [eTickets_Service];
+-- drop table [eTickets_ServiceType];
+-- drop table [eTickets_ServiceWorkflowTemplate];
+-- drop table [eTickets_Setting];
+-- drop view [eTickets_VW_TechnicianDailyStatusBreakdown];
+-- drop table [eTickets_Template];
+-- drop table [eTickets_TicketChecklist];
+-- drop table [eTickets_TicketDailyOperationsSummary];
+-- drop table [eTickets_TicketDailySummary];
+-- drop table [eTickets_TicketLabel];
+-- drop table [eTickets_TicketMetric];
+-- drop table [eTickets_Ticket];
+-- drop table [eTickets_TicketMonthlySummary];
+-- drop table [eTickets_TicketNote];
+-- drop table [eTickets_TicketStatus];
+-- drop table [eTickets_TicketSurvey];
+-- drop view [eTickets_VW_TicketTaskAssignment];
+-- drop table [eTickets_TicketTask];
+-- drop view [eTickets_VW_TicketTechnicianMonthlySummary];
+-- drop table [eTickets_TicketWorkflowApprover];
+-- drop view [eTickets_VW_TicketWorkflowApproverStatus];
+-- drop table [eTickets_TicketWorkflow];
+-- drop view [common_VW_UnassignedTicket];
+-- drop table [hr_AttendanceSheet];
+-- drop table [hr_AttendanceSheetUploadHistory];
+-- drop table [hr_AttendanceSheetUpload];
+-- drop table [hr_Document];
+-- drop table [hr_DocumentType];
+-- drop table [hr_Employee];
+-- drop table [hr_EmployeeRequiredTraining];
+-- drop table [hr_HRDepartment];
+-- drop table [hr_Trainee];
+-- drop table [hr_Training];
+-- drop table [eHR_JobFamily];
+-- drop table [UserActivity];
+-- drop table [eServices_Agent];
+-- drop table [eServices_AuthorizationArea];
+-- drop table [eServices_AuthorizationDomainGroup];
+-- drop table [eServices_Authorization];
+-- drop table [eServices_AuthorizationRole];
+-- drop table [eServices_MenuItem];
+-- drop table [eServices_Menu];
+-- drop table [eServices_Role];
+-- drop table [RolesCollections];
+-- drop table [eServices_SMS];
+-- drop table [eServices_UrlShortner];
+-- drop table [ePolicyTEST_Committee];
+-- drop table [ePolicyTEST_PolicyAttachment];
+-- drop table [ePolicyTEST_PolicyAudit];
+-- drop table [ePolicyTEST_PolicyLabel];
+-- drop table [ePolicyTEST_Policy];
+-- drop table [ePolicyTEST_PolicyNote];
+-- drop table [ePolicyTEST_PolicyRequestChangeItem];
+-- drop table [ePolicyTEST_PolicyRequestChange];
+-- drop table [ePolicyTEST_PolicyRequestDelete];
+-- drop table [ePolicyTEST_PolicyRequestRevision];
+-- drop table [ePolicyTEST_PolicyRequestSignatory];
+-- drop table [ePolicyTEST_PolicyRequestWithdraw];
+-- drop table [ePolicyTEST_PolicySignatory];
+-- drop table [ePolicyTEST_PolicyStatusHistory];
+-- drop table [ePolicyTEST_PolicyTemplateConfiguration];
+-- drop table [ePolicyTEST_PolicyTemplate];
+-- drop table [ePolicyTEST_PolicyTemplateSignatory];
+-- drop table [ePolicyTEST_PolicyTerminationAudit];
+-- drop table [ePolicyTEST_PolicyTerminationCommittee];
+-- drop table [ePolicyTEST_PolicyTermination];
+-- drop table [ePolicyTEST_PolicyTerminationReason];
+-- drop table [ePolicyTEST_PolicyTerminationSignatory];
+-- drop table [ePolicyTEST_PolicyUpdateRequest];
+-- drop table [ePolicyTEST_PolicyVersion];
+-- drop table [ePolicyTEST_PolicyVersionSignatory];
+-- drop table [ePolicyTEST_Workspace];
+-- drop table [ePolicyTEST_WorkspacePolicy];
+-- drop table [ePolicyTEST_DocumentRequestField];
+-- drop table [ePolicyTEST_DocumentRequest];
+-- drop table [ePolicyTEST_DocumentRequestSigner];
+-- drop table [ePolicyTEST_DocumentTemplateField];
+-- drop table [ePolicyTEST_DocumentTemplate];
+-- drop table [ePolicyTEST_DocumentTemplateSigner];
+-- drop table [hr_ApprovalGroupMember];
+-- drop table [hr_ApprovalGroup];
+-- drop view [ePolicyTEST_VW_PolicyAuthors];
+-- drop view [ePolicyTEST_VW_PolicyPendingSignatories];
+-- drop view [ePolicyTEST_VW_PolicyRequest];
+-- drop view [ePolicyTEST_VW_PolicySignatoriesJoined];
+-- drop view [ePolicyTEST_VW_PolicyStatusByUser];
+-- drop view [ePolicyTEST_VW_PolicySummary];
+-- drop view [ePolicyTEST_VW_PolicyTerminationPendingSignatories];
+-- drop view [ePolicyTEST_VW_PolicyTerminationSignatoriesJoined];
+-- drop view [eServices_VW_MenuRoleAuthorization];
+------------------------------------------------------------------
+-- drop table [etc_User];
+-- drop table [etc_Group];
+-- drop table [etc_UserGroup];
+-- drop table [etc_UserPasswordCache];
+-- drop table [etc_temp];
+----
+
+-- select name from sqlite_master where type in ('table','view') and name like 'etc_%';
+
+-- ALTER TABLE `foo` RENAME TO `bar`
+ALTER TABLE [etc_User] RENAME TO [etc_User_old];
+ALTER TABLE [etc_Group] RENAME TO [etc_Group_old];
+ALTER TABLE [etc_UserGroup] RENAME TO [etc_UserGroup_old];
+ALTER TABLE [etc_UserPasswordCache] RENAME TO [etc_UserPasswordCache_old];
+
+-- db=Microsoft.Data.Sqlite
+CREATE TABLE [etc_group] (
+   [Id] Integer NOT NULL    PRIMARY KEY AUTOINCREMENT,
+   [Name] NVARCHAR(255) COLLATE NOCASE  NOT NULL  DEFAULT '!' ,
+   [Owner] NVARCHAR(50) COLLATE NOCASE   ,
+   [FQDN] NVARCHAR(255) COLLATE NOCASE  NOT NULL  DEFAULT '!'
+ , CONSTRAINT [UK_etc_group_pdb] UNIQUE([Name])
+ , CONSTRAINT [UK_etc_group_pdo] UNIQUE([FQDN])
+);
+-- db=Microsoft.Data.Sqlite
+CREATE TABLE [etc_usergroup] (
+   [Id] Integer NOT NULL    PRIMARY KEY AUTOINCREMENT,
+   [GroupName] NVARCHAR(255) COLLATE NOCASE  NOT NULL ,
+   [Username] NVARCHAR(255) COLLATE NOCASE NOT NULL
+ , CONSTRAINT [UK_etc_usergroup_vdx] UNIQUE([GroupName],[Username])
+);
+-- db=Microsoft.Data.Sqlite
+CREATE TABLE [etc_user] (
+   [Id] Integer NOT NULL    PRIMARY KEY AUTOINCREMENT,
+   [ExpiryDate] DATETIME   ,
+   [Username] NVARCHAR(50) COLLATE NOCASE  NOT NULL  DEFAULT '!' ,
+   [Manager] NVARCHAR(50) COLLATE NOCASE   ,
+   [NameEn] NVARCHAR(200) COLLATE NOCASE  NOT NULL  DEFAULT '!' ,
+   [NameAr] NVARCHAR(200) COLLATE NOCASE  NOT NULL  DEFAULT '!' ,
+   [Email] NVARCHAR(255) COLLATE NOCASE  NOT NULL  DEFAULT '!' ,
+   [GivenNameEn] NVARCHAR(255) COLLATE NOCASE   ,
+   [MiddleNameEn] NVARCHAR(255) COLLATE NOCASE   ,
+   [ThirdNameEn] NVARCHAR(255) COLLATE NOCASE   ,
+   [SurNameEn] NVARCHAR(255) COLLATE NOCASE   ,
+   [GivenNameAr] NVARCHAR(255) COLLATE NOCASE   ,
+   [MiddleNameAr] NVARCHAR(255) COLLATE NOCASE   ,
+   [ThirdNameAr] NVARCHAR(255) COLLATE NOCASE   ,
+   [SurNameAr] NVARCHAR(255) COLLATE NOCASE   ,
+   [Password] NVARCHAR(100) COLLATE NOCASE  NOT NULL  DEFAULT '!' ,
+   [NationalId] NVARCHAR(100) COLLATE NOCASE  NOT NULL  DEFAULT '!' ,
+   [Nationality] NVARCHAR(200) COLLATE NOCASE   ,
+   [EmployeeId] NVARCHAR(10) COLLATE NOCASE  NOT NULL  DEFAULT '!' ,
+   [Mobile] NVARCHAR(20) COLLATE NOCASE  NOT NULL  DEFAULT '!' ,
+   [FailedLoginAttempts] Integer NOT NULL DEFAULT 0   ,
+   [LastUsed] DATETIME   ,
+   [CreatedOn] DATETIME   ,
+   [LastPasswordResetOn] DATETIME   ,
+   [PasswordExpiry] DATETIME   ,
+   [IsEnabled] BIT NOT NULL DEFAULT 0
+ , CONSTRAINT [UK_etc_user_hbq] UNIQUE([Username])
+);
+-- db=Microsoft.Data.Sqlite
+CREATE TABLE [etc_UserPasswordCache] (
+   [Id] Integer NOT NULL    PRIMARY KEY AUTOINCREMENT,
+   [Username] NVARCHAR(50) COLLATE NOCASE  NOT NULL  DEFAULT '!' ,
+   [Password] NVARCHAR(100) COLLATE NOCASE  NOT NULL  DEFAULT '!' ,
+   [CreatedOn] DATETIME NOT NULL DEFAULT '2000-01-01 00:00:00'
+);
+
+
+INSERT INTO [etc_User] ([ExpiryDate],[Username],[Manager],[NameEn],[NameAr],[Email],[GivenNameEn],[MiddleNameEn],[ThirdNameEn],[SurNameEn],[GivenNameAr],[MiddleNameAr],[ThirdNameAr],[SurNameAr],[Password],[NationalId],[Nationality],[EmployeeId],[Mobile],[FailedLoginAttempts],[LastUsed],[CreatedOn],[LastPasswordResetOn],[PasswordExpiry],[IsEnabled]) SELECT [ExpiryDate],[Username],[Manager],[NameEn],[NameAr],[Email],[GivenNameEn],[MiddleNameEn],[ThirdNameEn],[SurNameEn],[GivenNameAr],[MiddleNameAr],[ThirdNameAr],[SurNameAr],[Password],[NationalId],[Nationality],[EmployeeId],[Mobile],[FailedLoginAttempts],[LastUsed],[CreatedOn],[LastPasswordResetOn],[PasswordExpiry],[IsEnabled] FROM [etc_User_old];
+INSERT INTO [etc_Group] ([Name],[Owner],[FQDN]) SELECT [Name],[Owner],[FQDN] FROM [etc_Group_old];
+INSERT INTO [etc_UserGroup] ([GroupName],[Username]) SELECT [GroupName],[Username] FROM [etc_UserGroup_old] WHERE [GroupName] is not null and [Username] is not null;
+INSERT INTO [etc_UserPasswordCache] ([Username],[Password],[CreatedOn]) SELECT [Username],[Password],[CreatedOn] FROM [etc_UserPasswordCache_old];

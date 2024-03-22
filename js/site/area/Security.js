@@ -1371,7 +1371,8 @@ var JS_Security_User = {
                                 top.location.href = requestedUrl;
                             }else{
                                 ALERTS.INFO('You have some requests pending your approval');
-                                SETBODY(r);
+                                if(typeof r === 'string') SETBODY(r);
+                                else showAlert(r);
                             }
                         });
                     }
