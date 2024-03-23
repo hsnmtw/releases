@@ -395,67 +395,76 @@ update common_user set isenabled=0 where updatedby != 'auto';
 -- select name from sqlite_master where type in ('table','view') and name like 'etc_%';
 
 -- ALTER TABLE `foo` RENAME TO `bar`
-ALTER TABLE [etc_User] RENAME TO [etc_User_old];
-ALTER TABLE [etc_Group] RENAME TO [etc_Group_old];
-ALTER TABLE [etc_UserGroup] RENAME TO [etc_UserGroup_old];
-ALTER TABLE [etc_UserPasswordCache] RENAME TO [etc_UserPasswordCache_old];
+-- ALTER TABLE [etc_User] RENAME TO [etc_User_old];
+-- ALTER TABLE [etc_Group] RENAME TO [etc_Group_old];
+-- ALTER TABLE [etc_UserGroup] RENAME TO [etc_UserGroup_old];
+-- ALTER TABLE [etc_UserPasswordCache] RENAME TO [etc_UserPasswordCache_old];
 
--- db=Microsoft.Data.Sqlite
-CREATE TABLE [etc_group] (
-   [Id] Integer NOT NULL    PRIMARY KEY AUTOINCREMENT,
-   [Name] NVARCHAR(255) COLLATE NOCASE  NOT NULL  DEFAULT '!' ,
-   [Owner] NVARCHAR(50) COLLATE NOCASE   ,
-   [FQDN] NVARCHAR(255) COLLATE NOCASE  NOT NULL  DEFAULT '!'
- , CONSTRAINT [UK_etc_group_pdb] UNIQUE([Name])
- , CONSTRAINT [UK_etc_group_pdo] UNIQUE([FQDN])
-);
--- db=Microsoft.Data.Sqlite
-CREATE TABLE [etc_usergroup] (
-   [Id] Integer NOT NULL    PRIMARY KEY AUTOINCREMENT,
-   [GroupName] NVARCHAR(255) COLLATE NOCASE  NOT NULL ,
-   [Username] NVARCHAR(255) COLLATE NOCASE NOT NULL
- , CONSTRAINT [UK_etc_usergroup_vdx] UNIQUE([GroupName],[Username])
-);
--- db=Microsoft.Data.Sqlite
-CREATE TABLE [etc_user] (
-   [Id] Integer NOT NULL    PRIMARY KEY AUTOINCREMENT,
-   [ExpiryDate] DATETIME   ,
-   [Username] NVARCHAR(50) COLLATE NOCASE  NOT NULL  DEFAULT '!' ,
-   [Manager] NVARCHAR(50) COLLATE NOCASE   ,
-   [NameEn] NVARCHAR(200) COLLATE NOCASE  NOT NULL  DEFAULT '!' ,
-   [NameAr] NVARCHAR(200) COLLATE NOCASE  NOT NULL  DEFAULT '!' ,
-   [Email] NVARCHAR(255) COLLATE NOCASE  NOT NULL  DEFAULT '!' ,
-   [GivenNameEn] NVARCHAR(255) COLLATE NOCASE   ,
-   [MiddleNameEn] NVARCHAR(255) COLLATE NOCASE   ,
-   [ThirdNameEn] NVARCHAR(255) COLLATE NOCASE   ,
-   [SurNameEn] NVARCHAR(255) COLLATE NOCASE   ,
-   [GivenNameAr] NVARCHAR(255) COLLATE NOCASE   ,
-   [MiddleNameAr] NVARCHAR(255) COLLATE NOCASE   ,
-   [ThirdNameAr] NVARCHAR(255) COLLATE NOCASE   ,
-   [SurNameAr] NVARCHAR(255) COLLATE NOCASE   ,
-   [Password] NVARCHAR(100) COLLATE NOCASE  NOT NULL  DEFAULT '!' ,
-   [NationalId] NVARCHAR(100) COLLATE NOCASE  NOT NULL  DEFAULT '!' ,
-   [Nationality] NVARCHAR(200) COLLATE NOCASE   ,
-   [EmployeeId] NVARCHAR(10) COLLATE NOCASE  NOT NULL  DEFAULT '!' ,
-   [Mobile] NVARCHAR(20) COLLATE NOCASE  NOT NULL  DEFAULT '!' ,
-   [FailedLoginAttempts] Integer NOT NULL DEFAULT 0   ,
-   [LastUsed] DATETIME   ,
-   [CreatedOn] DATETIME   ,
-   [LastPasswordResetOn] DATETIME   ,
-   [PasswordExpiry] DATETIME   ,
-   [IsEnabled] BIT NOT NULL DEFAULT 0
- , CONSTRAINT [UK_etc_user_hbq] UNIQUE([Username])
-);
--- db=Microsoft.Data.Sqlite
-CREATE TABLE [etc_UserPasswordCache] (
-   [Id] Integer NOT NULL    PRIMARY KEY AUTOINCREMENT,
-   [Username] NVARCHAR(50) COLLATE NOCASE  NOT NULL  DEFAULT '!' ,
-   [Password] NVARCHAR(100) COLLATE NOCASE  NOT NULL  DEFAULT '!' ,
-   [CreatedOn] DATETIME NOT NULL DEFAULT '2000-01-01 00:00:00'
-);
+-- -- db=Microsoft.Data.Sqlite
+-- CREATE TABLE [etc_group] (
+--    [Id] Integer NOT NULL    PRIMARY KEY AUTOINCREMENT,
+--    [Name] NVARCHAR(255) COLLATE NOCASE  NOT NULL  DEFAULT '!' ,
+--    [Owner] NVARCHAR(50) COLLATE NOCASE   ,
+--    [FQDN] NVARCHAR(255) COLLATE NOCASE  NOT NULL  DEFAULT '!'
+--  , CONSTRAINT [UK_etc_group_pdb] UNIQUE([Name])
+--  , CONSTRAINT [UK_etc_group_pdo] UNIQUE([FQDN])
+-- );
+-- -- db=Microsoft.Data.Sqlite
+-- CREATE TABLE [etc_usergroup] (
+--    [Id] Integer NOT NULL    PRIMARY KEY AUTOINCREMENT,
+--    [GroupName] NVARCHAR(255) COLLATE NOCASE  NOT NULL ,
+--    [Username] NVARCHAR(255) COLLATE NOCASE NOT NULL
+--  , CONSTRAINT [UK_etc_usergroup_vdx] UNIQUE([GroupName],[Username])
+-- );
+-- -- db=Microsoft.Data.Sqlite
+-- CREATE TABLE [etc_user] (
+--    [Id] Integer NOT NULL    PRIMARY KEY AUTOINCREMENT,
+--    [ExpiryDate] DATETIME   ,
+--    [Username] NVARCHAR(50) COLLATE NOCASE  NOT NULL  DEFAULT '!' ,
+--    [Manager] NVARCHAR(50) COLLATE NOCASE   ,
+--    [NameEn] NVARCHAR(200) COLLATE NOCASE  NOT NULL  DEFAULT '!' ,
+--    [NameAr] NVARCHAR(200) COLLATE NOCASE  NOT NULL  DEFAULT '!' ,
+--    [Email] NVARCHAR(255) COLLATE NOCASE  NOT NULL  DEFAULT '!' ,
+--    [GivenNameEn] NVARCHAR(255) COLLATE NOCASE   ,
+--    [MiddleNameEn] NVARCHAR(255) COLLATE NOCASE   ,
+--    [ThirdNameEn] NVARCHAR(255) COLLATE NOCASE   ,
+--    [SurNameEn] NVARCHAR(255) COLLATE NOCASE   ,
+--    [GivenNameAr] NVARCHAR(255) COLLATE NOCASE   ,
+--    [MiddleNameAr] NVARCHAR(255) COLLATE NOCASE   ,
+--    [ThirdNameAr] NVARCHAR(255) COLLATE NOCASE   ,
+--    [SurNameAr] NVARCHAR(255) COLLATE NOCASE   ,
+--    [Password] NVARCHAR(100) COLLATE NOCASE  NOT NULL  DEFAULT '!' ,
+--    [NationalId] NVARCHAR(100) COLLATE NOCASE  NOT NULL  DEFAULT '!' ,
+--    [Nationality] NVARCHAR(200) COLLATE NOCASE   ,
+--    [EmployeeId] NVARCHAR(10) COLLATE NOCASE  NOT NULL  DEFAULT '!' ,
+--    [Mobile] NVARCHAR(20) COLLATE NOCASE  NOT NULL  DEFAULT '!' ,
+--    [FailedLoginAttempts] Integer NOT NULL DEFAULT 0   ,
+--    [LastUsed] DATETIME   ,
+--    [CreatedOn] DATETIME   ,
+--    [LastPasswordResetOn] DATETIME   ,
+--    [PasswordExpiry] DATETIME   ,
+--    [IsEnabled] BIT NOT NULL DEFAULT 0
+--  , CONSTRAINT [UK_etc_user_hbq] UNIQUE([Username])
+-- );
+-- -- db=Microsoft.Data.Sqlite
+-- CREATE TABLE [etc_UserPasswordCache] (
+--    [Id] Integer NOT NULL    PRIMARY KEY AUTOINCREMENT,
+--    [Username] NVARCHAR(50) COLLATE NOCASE  NOT NULL  DEFAULT '!' ,
+--    [Password] NVARCHAR(100) COLLATE NOCASE  NOT NULL  DEFAULT '!' ,
+--    [CreatedOn] DATETIME NOT NULL DEFAULT '2000-01-01 00:00:00'
+-- );
 
 
-INSERT INTO [etc_User] ([ExpiryDate],[Username],[Manager],[NameEn],[NameAr],[Email],[GivenNameEn],[MiddleNameEn],[ThirdNameEn],[SurNameEn],[GivenNameAr],[MiddleNameAr],[ThirdNameAr],[SurNameAr],[Password],[NationalId],[Nationality],[EmployeeId],[Mobile],[FailedLoginAttempts],[LastUsed],[CreatedOn],[LastPasswordResetOn],[PasswordExpiry],[IsEnabled]) SELECT [ExpiryDate],[Username],[Manager],[NameEn],[NameAr],[Email],[GivenNameEn],[MiddleNameEn],[ThirdNameEn],[SurNameEn],[GivenNameAr],[MiddleNameAr],[ThirdNameAr],[SurNameAr],[Password],[NationalId],[Nationality],[EmployeeId],[Mobile],[FailedLoginAttempts],[LastUsed],[CreatedOn],[LastPasswordResetOn],[PasswordExpiry],[IsEnabled] FROM [etc_User_old];
-INSERT INTO [etc_Group] ([Name],[Owner],[FQDN]) SELECT [Name],[Owner],[FQDN] FROM [etc_Group_old];
-INSERT INTO [etc_UserGroup] ([GroupName],[Username]) SELECT [GroupName],[Username] FROM [etc_UserGroup_old] WHERE [GroupName] is not null and [Username] is not null;
-INSERT INTO [etc_UserPasswordCache] ([Username],[Password],[CreatedOn]) SELECT [Username],[Password],[CreatedOn] FROM [etc_UserPasswordCache_old];
+-- INSERT INTO [etc_User] ([ExpiryDate],[Username],[Manager],[NameEn],[NameAr],[Email],[GivenNameEn],[MiddleNameEn],[ThirdNameEn],[SurNameEn],[GivenNameAr],[MiddleNameAr],[ThirdNameAr],[SurNameAr],[Password],[NationalId],[Nationality],[EmployeeId],[Mobile],[FailedLoginAttempts],[LastUsed],[CreatedOn],[LastPasswordResetOn],[PasswordExpiry],[IsEnabled]) SELECT [ExpiryDate],[Username],[Manager],[NameEn],[NameAr],[Email],[GivenNameEn],[MiddleNameEn],[ThirdNameEn],[SurNameEn],[GivenNameAr],[MiddleNameAr],[ThirdNameAr],[SurNameAr],[Password],[NationalId],[Nationality],[EmployeeId],[Mobile],[FailedLoginAttempts],[LastUsed],[CreatedOn],[LastPasswordResetOn],[PasswordExpiry],[IsEnabled] FROM [etc_User_old];
+-- INSERT INTO [etc_Group] ([Name],[Owner],[FQDN]) SELECT [Name],[Owner],[FQDN] FROM [etc_Group_old];
+-- INSERT INTO [etc_UserGroup] ([GroupName],[Username]) SELECT [GroupName],[Username] FROM [etc_UserGroup_old] WHERE [GroupName] is not null and [Username] is not null;
+-- INSERT INTO [etc_UserPasswordCache] ([Username],[Password],[CreatedOn]) SELECT [Username],[Password],[CreatedOn] FROM [etc_UserPasswordCache_old];
+
+
+alter table [hr_AttendanceSheet] add [Sunday] bit not null DEFAULT 1;
+alter table [hr_AttendanceSheet] add [Monday] bit not null DEFAULT 1;
+alter table [hr_AttendanceSheet] add [Tuesday] bit not null DEFAULT 1;
+alter table [hr_AttendanceSheet] add [Wedensday] bit not null DEFAULT 1;
+alter table [hr_AttendanceSheet] add [Thursday] bit not null DEFAULT 1;
+alter table [hr_AttendanceSheet] add [Friday] bit not null DEFAULT 0;
+alter table [hr_AttendanceSheet] add [Saturday] bit not null DEFAULT 0;
