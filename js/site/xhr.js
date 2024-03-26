@@ -246,8 +246,11 @@
                         var txt = this.responseText;
                         var rsp = isJSON(txt) ? JSON.parse(txt) : txt;
                         
-                        if(typeof rsp === 'object' && Object.keys(rsp).intersect(['Status','Message','Data']).length === 3 && rsp.Message.startsWith('#')){
-                            showAlert(rsp);
+                        if(typeof rsp === 'object' && Object.keys(rsp).intersect(['Status','Message','Data']).length === 3){// && rsp.Message.startsWith('#')){
+                            if(typeof onSuccess === 'function') 
+                                onSuccess(rsp); 
+                            else 
+                                showAlert(rsp);
                         }else{
                             if(typeof rsp === 'object') rsp = TABULAR(rsp);
                             show.dialog({
@@ -268,9 +271,10 @@
 
                //
                // E403
-               if (xmlHttpRequest.responseText.indexOf("403 - Not Authorized / Access Denied Error") > -1 || (xmlHttpRequest.responseText.indexOf("E403") > -1 && xmlHttpRequest.responseText.toLocaleLowerCase().indexOf("access denied") > -1)) {
+               if (xmlHttpRequest.responseText.indexOf("ERROR 403") > -1 || (xmlHttpRequest.responseText.indexOf("E403") > -1 && xmlHttpRequest.responseText.toLocaleLowerCase().indexOf("access denied") > -1)) {
                    inError = true;
-                   return show.dialog({title:'ERROR 403 - Access Denied', message: xmlHttpRequest.responseText });
+                   //return show.dialog({title:'ERROR 403 - Access Denied', message: xmlHttpRequest.responseText });
+                   return showAlert({Status:'warning',Message:'ERROR 403 - Forbidden | الوصول لهذه الخدمة غير مصرح به',Data:403});
                }
    
                var obj = XHR.tryConvertToJSON(xmlHttpRequest.responseText,api,type);
@@ -289,26 +293,28 @@
                 invoke(onSuccess, obj) || (typeof obj === 'object' && showAlert(obj));
                }
                else if(!invoke(onFailure, obj)) {
-                    var _obj = {};
+                    // var _obj = {};
 
-                    obj.Data = typeof obj.Data === 'string' && !isNullOrEmpty(obj.Data) && obj.Data.contains(' at ') ? null : obj.Data;
+                    // obj.Data = typeof obj.Data === 'string' && !isNullOrEmpty(obj.Data) && obj.Data.contains(' at ') ? null : obj.Data;
 
-                    _obj.METHOD = type;
-                    _obj.API = api;
-                    _obj.Content_Type = contentType;
-                    _obj.Http_Status = xmlHttpRequest.status;
-                    _obj.Http_Ready_State = xmlHttpRequest.readyState;
-                    _obj.Type = typeof(xmlHttpRequest.responseText) + " : " + typeof(obj);
-                    _obj.Response_Text = typeof(obj) === 'object' ? TABULAR(obj) : xmlHttpRequest.responseText;
-                    _obj.Success_Http_Status = successHttpStatus;
-                    _obj.On_Success = typeof onSuccess === 'function';
-                    _obj.On_Failure = typeof onFailure === 'function';
+                    // _obj.METHOD = type;
+                    // _obj.API = api;
+                    // _obj.Content_Type = contentType;
+                    // _obj.Http_Status = xmlHttpRequest.status;
+                    // _obj.Http_Ready_State = xmlHttpRequest.readyState;
+                    // _obj.Type = typeof(xmlHttpRequest.responseText) + " : " + typeof(obj);
+                    // _obj.Response_Text = typeof(obj) === 'object' ? TABULAR(obj) : xmlHttpRequest.responseText;
+                    // _obj.Success_Http_Status = successHttpStatus;
+                    // _obj.On_Success = typeof onSuccess === 'function';
+                    // _obj.On_Failure = typeof onFailure === 'function';
                     
-                    show.dialog({
-                        title: '<i class="red circle times icon"></i> Error while loading ajax request',
-                        message: TABULAR(_obj),
-                        size: 'mini'
-                    });
+                    // show.dialog({
+                    //     title: '<i class="red circle times icon"></i> Error while loading ajax request',
+                    //     message: TABULAR(_obj),
+                    //     size: 'mini'
+                    // });
+
+                    if(!invoke(onSuccess, obj)) showAlert(obj);
                }
                
             };
