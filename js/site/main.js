@@ -1241,10 +1241,12 @@ function SETHTML(selector, content, callback){
         selector.setAttribute('data-ix-unique-identifier', uid);
         selector = '[data-ix-unique-identifier="'+ uid +'"]';
     }
-    // var html = (""+content).split('<!-- BEGIN RENDER CONTENT -->').last().split('<!-- END RENDER CONTENT -->').first().trim();
-    //var pagn = (""+content).split('<!-- BEGIN PAGINATION -->').last().split('<!-- END PAGINATION -->').first().trim();
+
+    if(typeof content === 'object'){
+	content = JSON.stringify(content);
+    }
+
     each(selector, function(x){ x.innerHTML=content; });
-    //if(!isNullOrEmpty(pagn)) each('.pagination-div-group',function(x){ x.innerHTML = pagn; });
     initializeUI(selector);
     try { each(selector + ' [data-dynamic-js-src]', applyDynamic); } catch(e){}
     invoke(callback);

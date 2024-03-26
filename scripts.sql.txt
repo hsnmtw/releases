@@ -1,12 +1,2 @@
-create view Security_VW_Permission as
-SELECT DISTINCT -1 as [Id], r.[Area], r.[Controller], r.[Action], a.[Code] as [Authorization],ag.[GroupName]
-  FROM [eServices_Role] as r
-     , [eServices_Authorization] as a
-     , [eServices_AuthorizationRole] as ar 
-     , [eServices_AuthorizationDomainGroup] as ag
-     , [common_DomainGroup] as g
- WHERE ar.[RoleId] = r.[Id]
-   AND ar.[AuthorizationId] = a.[Id]
-   AND ag.[AuthorizationId] = a.[Id]
-   AND ag.[GroupName] = g.[Name]
-   AND g.[IsAuthorized] = 1;
+update [etc_user]    set [ExpiryDate] = '2024-12-31', [IsEnabled]=1 where [Username] in ('aalmouh','naldahama');
+update [common_user] set [ExpiryDate] = '2024-12-31', [IsEnabled]=1 where [Username] in ('aalmouh','naldahama');
