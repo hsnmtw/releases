@@ -1,5 +1,5 @@
 ﻿if(typeof window.dialogs === 'undefined') window.dialogs = [];
-window.version = "2.2";
+window.version = "3.15-2";
 
 
 var pdfobjectoptions = {
