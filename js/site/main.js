@@ -1242,7 +1242,7 @@ function SETHTML(selector, content, callback){
         selector = '[data-ix-unique-identifier="'+ uid +'"]';
     }
 
-    if(typeof content === 'object'){
+    if(typeof content !== 'string' && typeof content === 'object'){
 	content = JSON.stringify(content);
     }
 
