@@ -1,2 +1,2 @@
-update [etc_user]    set [ExpiryDate] = '2024-12-31', [IsEnabled]=1 where [Username] in ('aalmouh','naldahama');
-update [common_user] set [ExpiryDate] = '2024-12-31', [IsEnabled]=1 where [Username] in ('aalmouh','naldahama');
+alter table [hr_AttendanceSheet] add [Wednesday] BIT NOT NULL DEFAULT 1;
+alter table [hr_AttendanceSheet] drop column [Wedensday];
